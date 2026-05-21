@@ -1,0 +1,74 @@
+//If oracle does not allow online full backup in NOARCHIVELOG mode, then We will use MOUNT mode.
+
+
+In Command Prompt:
+
+sqlplus / as sysdba
+
+ Run These Commands One-by-One
+SHUTDOWN IMMEDIATE;
+STARTUP MOUNT;
+ALTER DATABASE ARCHIVELOG;
+ALTER DATABASE OPEN;
+ARCHIVE LOG LIST;
+
+
+
+
+Microsoft Windows [Version 10.0.19045.6466]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\dx>rman target /
+
+Recovery Manager: Release 21.0.0.0.0 - Production on Thu May 21 09:23:47 2026
+Version 21.3.0.0.0
+
+Copyright (c) 1982, 2021, Oracle and/or its affiliates.  All rights reserved.
+
+connected to target database: XE (DBID=3080738238)
+
+RMAN>
+
+RMAN> BACKUP DATABASE FORMAT 'C:\oracle_backup\full_backup_%U.bkp';
+
+Starting backup at 21-MAY-26
+using target database control file instead of recovery catalog
+allocated channel: ORA_DISK_1
+channel ORA_DISK_1: SID=10 device type=DISK
+channel ORA_DISK_1: starting full datafile backup set
+channel ORA_DISK_1: specifying datafile(s) in backup set
+input datafile file number=00001 name=C:\APP\DX\PRODUCT\21C\ORADATA\XE\SYSTEM01.DBF
+input datafile file number=00003 name=C:\APP\DX\PRODUCT\21C\ORADATA\XE\SYSAUX01.DBF
+input datafile file number=00004 name=C:\APP\DX\PRODUCT\21C\ORADATA\XE\UNDOTBS01.DBF
+input datafile file number=00007 name=C:\APP\DX\PRODUCT\21C\ORADATA\XE\USERS01.DBF
+channel ORA_DISK_1: starting piece 1 at 21-MAY-26
+channel ORA_DISK_1: finished piece 1 at 21-MAY-26
+piece handle=C:\ORACLE_BACKUP\FULL_BACKUP_014OLC1M_1_1_1.BKP tag=TAG20260521T092405 comment=NONE
+channel ORA_DISK_1: backup set complete, elapsed time: 00:00:07
+channel ORA_DISK_1: starting full datafile backup set
+channel ORA_DISK_1: specifying datafile(s) in backup set
+input datafile file number=00010 name=C:\APP\DX\PRODUCT\21C\ORADATA\XE\XEPDB1\SYSAUX01.DBF
+input datafile file number=00009 name=C:\APP\DX\PRODUCT\21C\ORADATA\XE\XEPDB1\SYSTEM01.DBF
+input datafile file number=00011 name=C:\APP\DX\PRODUCT\21C\ORADATA\XE\XEPDB1\UNDOTBS01.DBF
+input datafile file number=00012 name=C:\APP\DX\PRODUCT\21C\ORADATA\XE\XEPDB1\USERS01.DBF
+channel ORA_DISK_1: starting piece 1 at 21-MAY-26
+channel ORA_DISK_1: finished piece 1 at 21-MAY-26
+piece handle=C:\ORACLE_BACKUP\FULL_BACKUP_024OLC1T_2_1_1.BKP tag=TAG20260521T092405 comment=NONE
+channel ORA_DISK_1: backup set complete, elapsed time: 00:00:03
+channel ORA_DISK_1: starting full datafile backup set
+channel ORA_DISK_1: specifying datafile(s) in backup set
+input datafile file number=00006 name=C:\APP\DX\PRODUCT\21C\ORADATA\XE\PDBSEED\SYSAUX01.DBF
+input datafile file number=00005 name=C:\APP\DX\PRODUCT\21C\ORADATA\XE\PDBSEED\SYSTEM01.DBF
+input datafile file number=00008 name=C:\APP\DX\PRODUCT\21C\ORADATA\XE\PDBSEED\UNDOTBS01.DBF
+channel ORA_DISK_1: starting piece 1 at 21-MAY-26
+channel ORA_DISK_1: finished piece 1 at 21-MAY-26
+piece handle=C:\ORACLE_BACKUP\FULL_BACKUP_034OLC20_3_1_1.BKP tag=TAG20260521T092405 comment=NONE
+channel ORA_DISK_1: backup set complete, elapsed time: 00:00:07
+Finished backup at 21-MAY-26
+
+Starting Control File and SPFILE Autobackup at 21-MAY-26
+piece handle=C:\APP\DX\PRODUCT\21C\DBHOMEXE\DATABASE\C-3080738238-20260521-00 comment=NONE
+Finished Control File and SPFILE Autobackup at 21-MAY-26
+
+RMAN>
+
